@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Signup
+{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock style %}
+
+{% block content %}
+    <div class="content">
+        <form method="POST">
+            {% csrf_token %}
+            <div>
+                <h2 style="display: flex; align-items: center; justify-content: center; font-size: xx-large;">Sing Up</h2>
+            </div>
+            <br>
+            <div>
+                <input type="text" name="username" id="" placeholder="username">
+            </div>
+            <br>
+            <div>
+                <input type="email" name="email" id="" placeholder="email">
+            </div>
+            <br>
+            <div>
+                <input type="password" name="password" id="" placeholder="Password">
+            </div>
+            <br>
+            <div>
+                <input type="password" name="password2" id="" placeholder="Password Confirme">
+            </div>
+            <br>
+            <button type="submit">sing in</button>
+        </form>
+    </div>
+{% endblock content %}
