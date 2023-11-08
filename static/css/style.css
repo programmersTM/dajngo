@@ -1,12 +1,9 @@
-*{
-    border: none;
-    outline: none;
-    
-    font-size: 18px;
-    box-sizing: border-box;
-}
+
 
 .content{
+    border: none;
+    outline: none;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,6 +36,7 @@ input:focus{
 }
 button[type="submit"]{
     background-color: #2ed573;
+    border: 1px solid #2ed573;
     color: white;
     padding: 12px;
     border-radius: 8px;

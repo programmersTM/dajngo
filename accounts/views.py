@@ -37,9 +37,11 @@ def login(request):
             return redirect('login')
     return render(request, 'register/login.html')
 
-def dashboard(request):
-    pass
 
 def logout(request):
     auth.logout(request)
     return redirect('home')
+
+
+def dashboard(request):
+    pass
