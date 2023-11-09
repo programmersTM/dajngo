@@ -7,4 +7,5 @@ from .models import Blog
 @admin.register(Blog)
 class BlogAdmin(ModelAdmin):
     list_display = ('title', 'author', 'published')
-    list_filter = ('published',)
+    list_filter = ('title',)
+    list_editable = ('published',)

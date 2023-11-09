@@ -1,18 +1,16 @@
 
 
 .content{
-    border: none;
-    outline: none;
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #0224283c;
+    background-color: #fff;
     
 }
 form{
-    background-color: #fff;
+    background-color: #0224283c;
     border-radius: 12px;
     padding: 20px 28px;
     width: 400px;
@@ -26,12 +24,12 @@ input[type="password"]{
     border-radius: 8px;
     color: #1b1b1b;
     display: block;
+    outline: none;
 }
 input::placeholder{
     color: grey;
-    font-weight: 300;
 }
-input:focus{
+input::before{
     border-color: #89888b;
 }
 button[type="submit"]{

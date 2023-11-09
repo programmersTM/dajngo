@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from django.contrib.auth.models import User
 
 # from .forms import CustomChange, CustomCreate
 from .models import CustomUser
@@ -18,7 +17,7 @@ def signup(request):
             else:
                 user = CustomUser.objects.create_user(username=username, email=email, password=password)
                 user.save() 
-                return redirect('home')
+                return redirect('login')
         else:
             return redirect('signup')
 
@@ -32,7 +31,7 @@ def login(request):
             user = auth.authenticate(request, username=username, password=password)
             if user is not None:
                 auth.login(request, user)
-                return redirect('home')
+                return redirect('index')
         else:
             return redirect('login')
     return render(request, 'register/login.html')
@@ -40,7 +39,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('home')
+    return redirect('index')
 
 
 def dashboard(request):
