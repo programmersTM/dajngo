@@ -20,7 +20,13 @@
                 {% else %}
                 class="nav-link"
                 {% endif %}
-                href="{% url 'new_blog' %}">New Blog</a>
+                {% if user.is_authenticated %}
+                href="{% url 'new_blog'  %}"
+                >New Blog
+                {% else %}
+                >New Blog
+                {% endif %}
+                </a>
             </div>
         </div>
             <div class="mx-2 text-white" style="text-transform: capitalize;">
