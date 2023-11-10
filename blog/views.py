@@ -2,13 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 
 from accounts.models import CustomUser
-from .models import Blog
+from .models import Blog, Comment
 
 def index(request):
 
     blogs = Blog.objects.filter(published = 'pub').order_by('-date_created')
-    name = auth.get_user(request)
-    print(name)
     context = {
         'blogs': blogs
     }
@@ -31,9 +29,20 @@ def new_blog(request,):
 
 def detail_blog(request, title):
     blog = get_object_or_404(Blog, title = title)
+    user = auth.get_user(request)
+    if request.method == 'POST':
+        author = user.username
+        author = CustomUser.objects.get(username = author)
+        email = user.email
+        text = request.POST['text']
+        if user != "" and email !="" and text != "":
+            new_comment = Comment.objects.create(author_comment= author, post=blog, email=email, comment_text=text)
+            new_comment.save()
 
+    comments = Comment.objects.filter(post= blog).order_by('-date_created')
     context = {
         'blog': blog,
+        'comments': comments
     }
 
     return render(request, 'blog/detail.html', context)

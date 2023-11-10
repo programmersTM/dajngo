@@ -20,9 +20,10 @@ class Blog(models.Model):
 
 class Comment(models.Model):
     author_comment = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    email = models.EmailField(blank=True, null=True)
     post = models.ForeignKey(Blog, on_delete=models.CASCADE)
     comment_text = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.post
+        return self.post.title

@@ -13,7 +13,7 @@ class BlogAdmin(ModelAdmin):
     list_editable = ('published',)
 
 @admin.register(Comment)
-class BlogAdmin(ModelAdmin):
+class CommentsAdmin(ModelAdmin):
     list_display = ('author_comment', 'post', 'date_created')
     list_filter = ('post',)
     list_per_page = 10
