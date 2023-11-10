@@ -18,14 +18,13 @@ def index(request):
 def new_blog(request,):
     
     author = auth.get_user(request)
-    print(author)
     if request.method == 'POST':
         author = CustomUser.objects.get(username=author)
         title = request.POST['title']
         text = request.POST['text']
         if (title != "") and (text != ""):
             blog = Blog.objects.create(author = author, title=title, text=text)
-            # blog.save()
+            blog.save()
             return redirect('index', )
     return render(request, 'blog/new_blog.html')
 
