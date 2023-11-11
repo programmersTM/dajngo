@@ -20,10 +20,11 @@ def new_blog(request,):
         author = CustomUser.objects.get(username=author)
         title = request.POST['title']
         text = request.POST['text']
+        status = request.POST['status']
         if (title != "") and (text != ""):
-            blog = Blog.objects.create(author = author, title=title, text=text)
+            blog = Blog.objects.create(author = author, title = title, text = text, published = status)
             blog.save()
-            return redirect('index', )
+            return redirect('index')
     return render(request, 'blog/new_blog.html')
 
 
@@ -38,6 +39,7 @@ def detail_blog(request, title):
         if user != "" and email !="" and text != "":
             new_comment = Comment.objects.create(author_comment= author, post=blog, email=email, comment_text=text)
             new_comment.save()
+            return redirect('detail_blog', title)
 
     comments = Comment.objects.filter(post= blog).order_by('-date_created')
     context = {

@@ -25,7 +25,13 @@
                             <label class="py-1">Enter post text:</label>
                             <textarea class="form-control" name="text" rows="8" placeholder="Enter your post text here..." ></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="form-group py-2">
+                            <select class="form-select form-select" name="status">
+                                <option value="pub" selected>publiashed</option>
+                                <option value="drf">Draft</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Submit</button>
                     </form>
                 </div>
             </div>

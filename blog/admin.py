@@ -16,6 +16,6 @@ class BlogAdmin(ModelAdmin):
 class CommentsAdmin(ModelAdmin):
     list_display = ('author_comment', 'post', 'date_created')
     list_filter = ('post',)
-    list_per_page = 10
+    list_per_page = 35
     list_display_links = ('post', 'author_comment')
 
