@@ -30,17 +30,20 @@
                                 <option value="pub"
                                 {% if blog.published == 'pub' %}
                                 selected
+                                {% endif %}
                                 >published</option>
                                 <option value="drf"
-                                {% elif blog.published == 'drf' %}
+                                {% if blog.published == 'drf' %}
                                 selected
                                 {% endif %}
                                 >Draft</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-outline-success">Edit
-
-                        </button>
+                        {% if blog %}
+                        <button type="submit" class="btn btn-outline-success">Edit</button>
+                        {% else %}
+                        <button type="submit" class="btn btn-outline-success">Success</button>
+                        {% endif %}
                     </form>
                 </div>
             </div>

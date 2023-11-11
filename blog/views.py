@@ -59,7 +59,8 @@ def edit_blog(request, pk):
         status = request.POST['status']
         if title and text and status:
             Blog.objects.filter(id= pk).update(title=title, text=text, published= status)
-            return redirect('detail_blog', blog.title)
+            blog_new = Blog.objects.get(id = pk)
+            return redirect('detail_blog', blog_new.title)
     context = {
         "blog": blog
     }

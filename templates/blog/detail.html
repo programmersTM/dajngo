@@ -12,14 +12,16 @@
                 <h1>{{blog.title}}</h1>
                 <p class="small text-muted mt-2">By: {{ blog.author }}</p>
                 <p class="mt-2">{{ blog.text|linebreaks }}</p>
+                <p class="card-text"><small class="text-muted">Last created {{ blog.date_created | timesince }} ago</small></p>
             </div>
         
             <div class="card shadow my-3 p-5">
                 <h3>Comments:</h3>
                 {% if comments %}
                     {% for comment in comments %}
-                    <h3>{{ comment.author_comment }}: ({{ comment.date_created|timesince }})</h3>
+                    <h3>{{ comment.author_comment }}:</h3>
                     <p>{{ comment.comment_text|linebreaks }}</p>
+                    <p class="card-text"><small class="text-muted">Last created {{ comment.date_created|timesince }} ago</small></p>
                     {% endfor %}
                 {% else %}
                     No comments yet! Be the first one.
