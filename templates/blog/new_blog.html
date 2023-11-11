@@ -19,19 +19,28 @@
                         {% csrf_token %}
                         <div class="form-group py-2">
                             <label class="py-1">Enter post title:</label>
-                            <input type="text" class="form-control" placeholder="e.g. Some Title" name="title" required>
+                            <input type="text" class="form-control" placeholder="e.g. Some Title" name="title" required value="{{blog.title}}">
                         </div>
                         <div class="form-group py-2">
                             <label class="py-1">Enter post text:</label>
-                            <textarea class="form-control" name="text" rows="8" placeholder="Enter your post text here..." ></textarea>
+                            <textarea class="form-control" name="text" rows="8" placeholder="Enter your post text here...">{{blog.text}}</textarea>
                         </div>
                         <div class="form-group py-2">
                             <select class="form-select form-select" name="status">
-                                <option value="pub" selected>publiashed</option>
-                                <option value="drf">Draft</option>
+                                <option value="pub"
+                                {% if blog.published == 'pub' %}
+                                selected
+                                >published</option>
+                                <option value="drf"
+                                {% elif blog.published == 'drf' %}
+                                selected
+                                {% endif %}
+                                >Draft</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                        <button type="submit" class="btn btn-outline-success">Edit
+
+                        </button>
                     </form>
                 </div>
             </div>
