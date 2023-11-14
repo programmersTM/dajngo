@@ -66,3 +66,20 @@ def edit_blog(request, pk):
     }
 
     return render(request, 'blog/new_blog.html', context)
+
+
+def delete_blog(request, pk):
+    blog = Blog.objects.get(id = pk)
+    
+    if request.method == 'POST':
+        choice = request.POST['status']
+        if choice == 'yes':
+            blog.delete()
+            return redirect('index')
+        else:
+            return redirect('detail_blog', blog.title)
+
+    context = {
+        'blog':blog,
+    }
+    return render(request, 'blog/delete.html', context)
