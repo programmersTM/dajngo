@@ -31,7 +31,8 @@
         </div>
             <div class="mx-2 text-white" style="text-transform: capitalize;">
             {% if user.is_authenticated %}
-            Hello {{user.username}} | <a href="{% url 'logout' %}" class="mx-2 text-white">Logout</a>
+            <a class="text-white" href="{% url 'dashboard' %}">Hello {{user.username}}</a>
+            | <a href="{% url 'logout' %}" class="mx-2 text-white">Logout</a>
             {% else %}
             <a href="{% url 'signup' %}" class="mx-2 text-white">signup</a> | <a href="{% url 'login' %}" class="mx-2 text-white">Login</a>
             {% endif %}

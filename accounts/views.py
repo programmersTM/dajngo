@@ -43,4 +43,5 @@ def logout(request):
 
 
 def dashboard(request):
-    pass
+    
+    return render(request, 'register/dashboard.html')
