@@ -3,6 +3,7 @@ from django.contrib import auth
 
 # from .forms import CustomChange, CustomCreate
 from .models import CustomUser
+from blog.models import Blog, Comment
 
 def signup(request):
 
@@ -43,5 +44,30 @@ def logout(request):
 
 
 def dashboard(request):
-    
-    return render(request, 'register/dashboard.html')
+    user = auth.get_user(request)
+    blogs = Blog.objects.filter(author = user).order_by('-date_created')
+    comments = Comment.objects.filter(author_comment = user).order_by('-date_created')
+
+    # count object and set number near
+    def make_num_obj(list_object):
+        obj_list = []
+        i = 1
+        for val in list_object:
+            obj_list.append((i, val))
+            i += 1
+        return obj_list
+        
+    blogs_new = make_num_obj(blogs)
+    commentlist_new = make_num_obj(comments)
+
+    context = {
+        'blogs': blogs_new,
+        'comments': commentlist_new,
+        # 'number_blogs': blog_count,
+        # 'number_comments': comment_count,
+    }
+
+
+
+    return render(request, 'register/dashboard.html', context)
+

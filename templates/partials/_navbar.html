@@ -39,8 +39,16 @@
             </div>
     </div>
 </nav>
-
-<div class="container-fluid bg-info">
+{% if 'dashboard/' in request.path %}
+<div class="container-fluid bg-info text-center">
+    <div class="row py-3">
+        <div class="col-md-8 col-md-10 mx-auto">
+            <h3 class="my-4 mt-3 text-white">Dashboard {{ user.username | title }}</h3>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container-fluid bg-info text-center">
     <div class="row py-3">
         <div class="col-md-8 col-md-10 mx-auto">
             <h3 class="my-4 mt-3 text-white">Welcome to Python and Django Blog</h3>
@@ -48,4 +56,4 @@
         </div>
     </div>
 </div>
-
+{% endif %}
