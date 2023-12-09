@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}
+    Home 
+{% endblock title %}
+
+
+{% block content %}
+    
+    <div class="container mt-4">
+    <div class="row">
+        <div class="col-9">
+            {% if blogs %}
+            {% for blog in blogs %}
+            <div class="card shadow-sm my-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{blog.title}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted small py-2"> {{ blog.date_created|timesince }} ago </h6>
+                    <p class="card-text py-3">
+                        {{ blog.text | truncatewords:2 }}
+                    </p>
+                    <div> 
+                        <a href="{% url 'detail_blog' blog.title %}"  class="btn btn-sm btn-outline-primary"> Read More </a>
+                        {% if user.username == blog.author.username %}
+                        <a class="btn btn-sm btn-outline-warning" href="{% url 'edit_blog' blog.id %}" role="button">Edit</a>
+                        <a class="btn btn-sm btn-outline-danger" href="{% url 'delete_blog' blog.id %}" role="button">Delete</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+                <h5 class="card-title"> No blog available </h5>
+            {% endif %}
+        </div>
+        <div class="col-3">
+
+                <div class="card my-4">
+                    <h5 class="card-header">About</h5>
+                    <div class="card-body">
+                        <p class="card-text">We love python and django. So we created a blog site to share our
+                            thoughts</p>
+                        <a href="#"
+                           class="btn btn-sm btn-danger">
+                            More...
+                        </a>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+    </div>
+{% endblock content %}
