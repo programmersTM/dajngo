@@ -6,55 +6,72 @@
 
 {% block content %}
     <div class="container mt-3">
-        {% if blogs %}
-        <div class="card shadow-sm my-3">
-            <div class="card-body">
-            <h5 class="card-title">Post</h5>
-            <table class="table">
-                <thead class="thead">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Blog</th>
-                    <th scope="col">date created</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {% for num, blog in blogs %}
-                    <tr>
-                        <th scope="row">{{ num }}</th>
-                        <td>{{ blog.title }}</td>
-                        <td>{{ blog.date_created | timesince }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col-9">
+                {% if blogs %}
+                <div class="card shadow-sm my-3">
+                    <div class="card-body">
+                    <h5 class="card-title">Post</h5>
+                    <table class="table">
+                        <thead class="thead">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Blog</th>
+                            <th scope="col">date created</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for num, blog in blogs %}
+                            <tr>
+                                <th scope="row">{{ num }}</th>
+                                <td>{{ blog.title }}</td>
+                                <td>{{ blog.date_created | timesince }} ago</td>
+                                <td><a class="btn btn-sm btn-outline-warning" href="{% url 'edit_blog' blog.id %}" role="button">Edit</a>
+                                    <a class="btn btn-sm btn-outline-danger" href="{% url 'delete_blog' blog.id %}" role="button">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                {% endif %}
+                {% if comments %}
+                <div class="card shadow-sm my-3">
+                    <div class="card-body">
+                    <h5 class="card-title">Comment</h5>
+                    <table class="table">
+                        <thead class="thead">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Post</th>
+                            <th scope="col">comment_text</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for num, comment in comments %}
+                            <tr>
+                                <th scope="row">{{ num }}</th>
+                                <td>{{ comment.post }}</td>
+                                <td>{{ comment.comment_text | truncatewords:3 }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-3">
+                <div class="card my-4">
+                    <h5 class="card-header">Information {{ user.username|title }}</h5>
+                    <div class="card-body">
+                        <p class="card-text">Email: {{ user.email }}</p>
+                        <p class="card-text">Last login: {{ user.last_login }}</p>
+                        <p class="card-text">Date Joined: {{ user.date_joined }}</p>
+                    </div>
+                </div>
             </div>
         </div>
-        {% endif %}
-        {% if comments %}
-        <div class="card shadow-sm my-3">
-            <div class="card-body">
-            <h5 class="card-title">Comment</h5>
-            <table class="table">
-                <thead class="thead">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Post</th>
-                    <th scope="col">comment_text</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {% for num, comment in comments %}
-                    <tr>
-                        <th scope="row">{{ num }}</th>
-                        <td>{{ comment.post }}</td>
-                        <td>{{ comment.comment_text | truncatewords:3 }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            </div>
-        </div>
-        {% endif %}
     </div>
 {% endblock content %}

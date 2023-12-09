@@ -83,3 +83,7 @@ def delete_blog(request, pk):
         'blog':blog,
     }
     return render(request, 'blog/delete.html', context)
+
+
+def about_blog(request):
+    return render(request, 'pages/about.html')

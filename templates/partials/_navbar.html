@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'index' %}">programmer 💯💯</a>
+        <a class="navbar-brand" href="{% url 'index' %}">Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,6 +27,13 @@
                 >New Blog
                 {% endif %}
                 </a>
+                <a
+                {% if 'about/' in request.path %}
+                class="nav-link active"
+                {% else %}
+                class="nav-link"
+                {% endif %}
+                href="{% url 'about_blog' %}">About</a>
             </div>
         </div>
             <div class="mx-2 text-white" style="text-transform: capitalize;">
@@ -47,12 +54,20 @@
         </div>
     </div>
 </div>
+{% elif 'about/' in request.path %}
+<div class="container-fluid bg-info text-center">
+    <div class="row py-3">
+        <div class="col-md-8 col-md-10 mx-auto">
+            <h3 class="my-4 mt-3 text-white">About Us</h3>
+        </div>
+    </div>
+</div>
 {% else %}
 <div class="container-fluid bg-info text-center">
     <div class="row py-3">
         <div class="col-md-8 col-md-10 mx-auto">
-            <h3 class="my-4 mt-3 text-white">Welcome to Python and Django Blog</h3>
-            <p class="text-light">We share python and django tips and tricks here</p>
+            <h3 class="my-4 mt-3 text-white">List Blogs</h3>
+            <p class="text-light">We share blogs your here</p>
         </div>
     </div>
 </div>
